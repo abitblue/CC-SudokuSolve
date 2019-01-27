@@ -28,13 +28,21 @@ def main():
     print("Sudoku Solver v1")
     start_time = time.time()
 
-    solve_grid = grid2
+    solve_grid = grid1
 
     print('Solving grid:', solve_grid, "\n\n")
     parse(solve_grid)
 
     #elimination(grid)
-    search(grid)
+
+    while num_incomplete(grid) is not 0:
+        constrain(grid)
+        for cell in grid:
+            if len(cell["possible_values"]) is 1 and cell["value"] is '0' and cell["possible_values"][0] is not '':
+                cell["value"] = str(cell["possible_values"][0])
+                cell["possible_values"] = ['']
+
+    #search(grid)
 
     end_time = time.time()
     display(grid)

@@ -7,17 +7,17 @@ grid2 = '02081074070000310009000280500904008740020800316003020030270006000560000
 # Hard
 grid3 = '38.6.......9.......2..3.51......5....3..1..6....4......17.5..8.......9.......7.32' # 3315272       82.5
 grid4 = '8..7....4.5....6............3.97...8....43..5....2.9....6......2...6...7.71..83.2' # 517638        12.1
-grid5 = '....75....1..2.....4...3...5.....3.2...8...1.......6.....1..48.2........7........' #
+grid5 = '....75....1..2.....4...3...5.....3.2...8...1.......6.....1..48.2........7........' # 28232878      723
 
 # Hardest
-grid6 = '..53.....8......2..7..1.5..4....53...1..7...6..32...8..6.5....9..4....3......97..' #
+grid6 = '..53.....8......2..7..1.5..4....53...1..7...6..32...8..6.5....9..4....3......97..' # 267667        7.72
 
 # Global Variables
 def str_cross(values1, values2):
     return [value1 + value2 for value1 in values1 for value2 in values2]
 
 
-solve_grid = grid5
+solve_grid = grid6
 digits = '123456789'
 rows = 'ABCDEFGHI'
 cols = digits
@@ -123,8 +123,15 @@ def parse(values):
 
     constrain(board)
     display(board)
+
+    possibilities = 1
+    for cell in board:
+        if cell["possible_values"][0] is not '':
+            possibilities *= len(cell["possible_values"])
+
     end_time = time.time()
     print("Parsed grid in", (end_time - start_time), "seconds:")
+    print("Number of board possibilities:", "{:.2e}".format(possibilities))
     print(board)
 
 

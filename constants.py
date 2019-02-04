@@ -1,4 +1,4 @@
-import tools
+from src.utils import tools
 
 display_height = 720
 display_aspect = 1
@@ -9,5 +9,5 @@ rows = 'ABCDEFGHI'
 cols = digits
 cell_indexes = tools.str_cross(rows, cols)
 
-draw_while_solve = True
-debug = False
+draw_while_solve = False
+debug = True

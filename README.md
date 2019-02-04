@@ -7,7 +7,9 @@
 
 ## Requirements:
 - pygame
-- Font file: 'PressStart2P.ttf' in root project folder
 
 ## Usage:
 - TODO
+
+## TODO:
+- Optimize `solve.py:81(is_safe)`

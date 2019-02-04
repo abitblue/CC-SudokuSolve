@@ -1,6 +1,6 @@
 import sys
 import pygame
-import colors
+from src.utils import colors
 
 
 def safe_cast(val, to_type, default=None):
@@ -15,12 +15,21 @@ def range1(start, end):
     return range(start, end + 1)
 
 
-def draw_text(screen, text, x, y, size=36, color=colors.color('WHITE'), font_type='PressStart2P.ttf'):
+def draw_snum(screen, text, x, y, color, font):
+    try:
+        screen.blit(font.render(str(text), True, color), (x, y))
+    except Exception as e:
+        print("Unexpected error:", sys.exc_info()[0])
+        raise e
+
+
+def draw_ctext(screen, text, x, y, size=36, color=colors.color('WHITE'), font_type='PressStart2P.ttf'):
     try:
         text = str(text)
         font = pygame.font.Font(font_type, size)
         text = font.render(text, True, color)
         screen.blit(text, (x, y))
+        print('Using alternate font')
     except Exception as e:
         print("Unexpected error:", sys.exc_info()[0])
         raise e

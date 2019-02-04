@@ -2,7 +2,7 @@ import time
 
 import main
 import constants as ct
-import tools
+from src.utils import tools
 
 board = []
 cycles = 0
@@ -114,7 +114,7 @@ def search(a_grid, dd=ct.draw_while_solve):
             if dd is True:
                 main.draw_frame()
             else:
-                pass
+               pass
 
             if search(a_grid):
                 return True

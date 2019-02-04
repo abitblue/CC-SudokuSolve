@@ -2,13 +2,16 @@ import cProfile
 import pygame
 import pygame.freetype
 
-import tools
-import colors
-import solve
+from src.utils import colors, tools
 import constants as ct
+from src import solve
 
 DISPLAY = pygame.display.set_mode((ct.display_width, ct.display_height), pygame.HWSURFACE)
 CLOCK = pygame.time.Clock()
+
+pygame.font.init()
+write_font = pygame.font.Font('PressStart2P.ttf', 42)
+
 
 def main():
     if ct.debug is True:
@@ -41,6 +44,7 @@ def main():
 
 
 def draw_frame(screen=DISPLAY):
+    global write_font
     screen.fill((0, 0, 0))
 
     fps_font = pygame.font.SysFont('Calibri', 24)
@@ -74,14 +78,15 @@ def draw_frame(screen=DISPLAY):
                 dvalue = cell['value']
                 dcolor = 'WHITE'
 
-            xpos = tools.safe_cast(cell["index"][1:], int) * (ct.display_width/9) - \
+            xpos = tools.safe_cast(cell["index"][1:], int) * (ct.display_width / 9) - \
                    (ct.display_width/18) - 15
-            ypos = ((tools.safe_cast(ord(cell["index"][:1]), int))-64) * (ct.display_height/9) - \
+            ypos = ((tools.safe_cast(ord(cell["index"][:1]), int)) - 64) * (ct.display_height / 9) - \
                    (ct.display_height/18) - 15
-            tools.draw_text(screen=screen, text=dvalue, x=xpos, y=ypos, size=42, color=colors.color(dcolor))
+            tools.draw_snum(screen=screen, text=dvalue, x=xpos, y=ypos, color=colors.color(dcolor), font=write_font)
 
     pygame.display.update()
     CLOCK.tick()
+
 
 def pre_init():
     solve_grid = None

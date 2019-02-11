@@ -79,8 +79,6 @@ def enum_cycle():
 
 
 def is_safe(a_grid, try_index, value):
-    safe = True
-
     for cell in a_grid:
         cell_row = cell["index"][:1]
         cell_col = cell["index"][1:]
@@ -90,9 +88,9 @@ def is_safe(a_grid, try_index, value):
                 or (cell_col in a_grid[try_index]["index"]) \
                 or (cell_set in a_grid[try_index]["set"]):
             if value in cell["value"]:
-                safe = False
+                return False
 
-    return safe
+    return True
 
 
 def search(a_grid, dd=ct.draw_while_solve):

@@ -85,7 +85,6 @@ def draw_frame(screen=DISPLAY):
             tools.draw_snum(screen=screen, text=dvalue, x=xpos, y=ypos, color=colors.color(dcolor), font=write_font)
 
     pygame.display.update()
-    pygame.event.poll()
     CLOCK.tick()
 
 

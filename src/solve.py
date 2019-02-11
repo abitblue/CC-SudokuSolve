@@ -4,6 +4,8 @@ import main
 import constants as ct
 from src.utils import tools
 
+import pygame
+
 board = []
 cycles = 0
 
@@ -111,8 +113,9 @@ def search(a_grid, dd=ct.draw_while_solve):
             # print("Safe value ", value, "at", a_grid[try_index]["index"])
             if dd is True:
                 main.draw_frame()
+                pygame.event.poll()
             else:
-               pass
+                pass
 
             if search(a_grid):
                 return True

@@ -10,4 +10,4 @@ cols = digits
 cell_indexes = tools.str_cross(rows, cols)
 
 draw_while_solve = True
-debug = True
+debug = False

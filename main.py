@@ -13,6 +13,7 @@ CLOCK = pygame.time.Clock()
 
 pygame.font.init()
 write_font = pygame.font.Font('PressStart2P.ttf', 42)
+fps_font = pygame.font.SysFont('Calibri', 24)
 
 
 def main():
@@ -49,7 +50,6 @@ def draw_frame(screen=DISPLAY):
     global write_font
     screen.fill((0, 0, 0))
 
-    fps_font = pygame.font.SysFont('Calibri', 24)
     fps = fps_font.render(str(int(CLOCK.get_fps())), False, colors.color('WHITE'))
     screen.blit(fps, (12, 12))
 
@@ -59,7 +59,7 @@ def draw_frame(screen=DISPLAY):
         else:
             thickness = 1
         pygame.draw.rect(screen,
-                         colors.color('#FFFFFF'),
+                         colors.color('WHITE'),
                          pygame.Rect(((ct.display_width / 9) * vline) - thickness, 0, thickness * 2, ct.display_height))
 
     for hline in tools.range1(0, 9):
@@ -68,14 +68,14 @@ def draw_frame(screen=DISPLAY):
         else:
             thickness = 1
         pygame.draw.rect(screen,
-                         colors.color('#FFFFFF'),
+                         colors.color('WHITE'),
                          pygame.Rect(0, ((ct.display_width / 9) * hline) - thickness, ct.display_width, thickness * 2))
 
     for cell in solve.board:
         if cell['value'] is not '0':
             if len(cell['possible_values']) > 0 and cell['possible_values'][0] is not '':
                 dvalue = cell['value']
-                dcolor = '#88ade8'
+                dcolor = 'TEALBLUE'
             else:
                 dvalue = cell['value']
                 dcolor = 'WHITE'
@@ -118,8 +118,7 @@ if __name__ == '__main__':
     pygame.display.set_caption("Sudoku")
 
     pygame.event.set_allowed(None)
-    pygame.event.set_allowed(pygame.MOUSEBUTTONDOWN)
-    pygame.event.set_allowed(pygame.MOUSEBUTTONUP)
+    pygame.event.set_allowed(pygame.KEYDOWN)
     pygame.event.set_allowed(pygame.QUIT)
 
     main()

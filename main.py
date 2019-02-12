@@ -6,7 +6,9 @@ from src.utils import colors, tools
 import constants as ct
 from src import solve
 
-DISPLAY = pygame.display.set_mode((ct.display_width, ct.display_height), pygame.HWSURFACE)
+DISPLAY = pygame.display.set_mode((ct.display_width, ct.display_height))
+DISPLAY.set_alpha(None)
+
 CLOCK = pygame.time.Clock()
 
 pygame.font.init()
@@ -114,5 +116,10 @@ if __name__ == '__main__':
     pygame.init()
     pygame.font.init()
     pygame.display.set_caption("Sudoku")
+
+    pygame.event.set_allowed(None)
+    pygame.event.set_allowed(pygame.MOUSEBUTTONDOWN)
+    pygame.event.set_allowed(pygame.MOUSEBUTTONUP)
+    pygame.event.set_allowed(pygame.QUIT)
 
     main()

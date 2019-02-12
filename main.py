@@ -5,6 +5,7 @@ import pygame.freetype
 from src.utils import colors, tools
 import constants as ct
 from src import solve
+import random
 
 DISPLAY = pygame.display.set_mode((ct.display_width, ct.display_height))
 DISPLAY.set_alpha(None)
@@ -100,7 +101,14 @@ def pre_init():
     for grid in grids:
         print("[{id}] {val}".format(id=grids.index(grid), val=grid))
 
+    print("[{id}] {val}".format(id=len(grids)+1, val="Select a random grid"))
+
+    solve_grid = None
     while solve_grid not in [grids.index(grid) for grid in grids]:
+        if solve_grid == len(grids)+1:
+            solve_grid = random.randint(1, len(grids))
+            print("Selected grid", solve_grid)
+            break
         solve_grid = tools.safe_cast(input("Choose a grid to solve: "), int)
 
     if len(grids[solve_grid]) is not 81:
